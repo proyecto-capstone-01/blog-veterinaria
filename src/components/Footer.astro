@@ -1,0 +1,58 @@
+---
+import { SocialLinks, WebsiteLinks } from '../consts'
+import LogoSVG from '../assets/logo.svg'
+import { Icon } from 'astro-icon/components'
+
+const today = new Date()
+---
+
+<footer>
+	<div
+		class="app-container grid md:grid-cols-3 gap-12 py-16 border-t-2 border-foreground/50 dark:border-foreground-dark/50"
+	>
+		<div>
+			<a href="/" class="block w-fit" aria-label="Home">
+				<LogoSVG height={75} width={65} />
+			</a>
+		</div>
+		<div>
+			<h3 class="font-semibold text-2xl">Links</h3>
+			<div class="flex flex-wrap gap-4 mt-4">
+				{
+					WebsiteLinks.filter((link) => link.name !== 'Home').map((link) => (
+						<a
+							class="text-lg"
+							href={link.url}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							{link.name}
+						</a>
+					))
+				}
+			</div>
+		</div>
+		<div>
+			<h3 class="font-semibold text-2xl">Redes Sociales</h3>
+			<div class="flex flex-wrap gap-4 mt-4">
+				{
+					SocialLinks.map((link) => (
+						<a
+							class="text-lg"
+							href={link.url}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							{link.name}
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</div>
+	<div class="app-container flex justify-between items-center pb-6 text-center">
+		<p class="text-left md:text-center w-full">
+			 Clinica Veterinaria Pucará | Todos los derechos reservados. &copy;{today.getFullYear()}
+		</p>
+	</div>
+</footer>
