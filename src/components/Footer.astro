@@ -2,14 +2,13 @@
 import { SocialLinks, WebsiteLinks } from '../consts'
 import LogoSVG from '../assets/logo.svg'
 import { Icon } from 'astro-icon/components'
+import ThemeSelector from './ThemeSelector.astro'
 
 const today = new Date()
 ---
 
 <footer>
-	<div
-		class="app-container grid md:grid-cols-3 gap-12 py-16 border-t-2 border-foreground/50 dark:border-foreground-dark/50"
-	>
+	<div class="app-container grid md:grid-cols-3 gap-12 py-16 border-t-2 border-foreground/50 dark:border-foreground-dark/50">
 		<div>
 			<a href="/" class="block w-fit" aria-label="Home">
 				<LogoSVG height={75} width={65} />
@@ -49,10 +48,87 @@ const today = new Date()
 				}
 			</div>
 		</div>
+		<div class="flex flex-wrap gap-4 mt-4">
+			<ThemeSelector />
+		</div>
 	</div>
 	<div class="app-container flex justify-between items-center pb-6 text-center">
 		<p class="text-left md:text-center w-full">
 			 Clinica Veterinaria Pucará | Todos los derechos reservados. &copy;{today.getFullYear()}
 		</p>
 	</div>
+	<script>
+		function toggleNav() {
+			document
+				.querySelector('#mobile-menu')
+				?.classList.toggle('mobile-nav-open')
+		}
+
+		document
+			.querySelector('#nav-open-btn')
+			?.addEventListener('click', toggleNav)
+		document
+			.querySelector('#nav-close-btn')
+			?.addEventListener('click', toggleNav)
+	</script>
 </footer>
+
+<script is:inline>
+	function reComputeTheme() {
+		if (
+			localStorage.theme === 'dark' ||
+			(!('theme' in localStorage) &&
+				window.matchMedia('(prefers-color-scheme: dark)').matches)
+		) {
+			document.documentElement.classList.add('dark')
+		} else {
+			document.documentElement.classList.remove('dark')
+		}
+
+		const theme = localStorage.theme || 'auto'
+		document
+			.querySelectorAll(`[data-theme="theme-${theme}"]`)
+			.forEach((el) => el.classList.add('active'))
+	}
+
+	function addThemeEventListeners() {
+		themeButtons = document.querySelectorAll('.theme-button')
+		themeButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				themeButtons.forEach((btn) => btn.classList.remove('active'))
+				button.classList.add('active')
+				if (button.dataset.theme === 'theme-auto') {
+					localStorage.removeItem('theme')
+					reComputeTheme()
+				} else {
+					localStorage.theme = button.dataset.theme.replace('theme-', '')
+					document.documentElement.classList.toggle(
+						'dark',
+						button.dataset.theme === 'theme-dark'
+					)
+				}
+			})
+		})
+	}
+
+	// Set active class on OS theme change
+	window
+		.matchMedia('(prefers-color-scheme: dark)')
+		.addEventListener('change', (_e) => {
+			reComputeTheme()
+		})
+
+	// run recomputeTheme when screen crosses 768px
+	window.matchMedia('(min-width: 768px)').addEventListener('change', (_e) => {
+		addThemeEventListeners()
+		reComputeTheme()
+	})
+
+	reComputeTheme()
+
+	// Run on page load
+	window.addEventListener('DOMContentLoaded', () => {
+		addThemeEventListeners()
+		reComputeTheme()
+	})
+</script>
