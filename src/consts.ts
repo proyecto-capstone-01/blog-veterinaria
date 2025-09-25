@@ -3,7 +3,7 @@
 
 export const SITE_TITLE = 'Blog Educativo Pucará'
 export const SITE_DESCRIPTION =
-	'A simple theme for personal blog sites, created for Astro framework'
+	'Blog Educativo para la veterinaria Pucará, creado con el framework Astro'
 
 // If you deploy to a subdirectory, set the `WEBSITE_BASE` here.
 // e.g. '/blog' if you are deploying to example.com/blog
@@ -19,7 +19,7 @@ export const SocialLinks = [
 
 export const WebsiteLinks = [
 	{
-		name: 'About',
+		name: 'Sobre Nosotros',
 		url: 'about',
 	},
 ]
