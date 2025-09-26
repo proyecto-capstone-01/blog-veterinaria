@@ -7,5 +7,6 @@
 			"@/*": ["src/*"],
 			"@blogimages/*": ["src/assets/blogimages/*"]
 		}
-	}
+	},
+	"exclude": ["dist"]
 }

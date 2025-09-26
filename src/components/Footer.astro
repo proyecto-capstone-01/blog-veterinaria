@@ -11,7 +11,7 @@ const today = new Date()
 <footer>
 	<div class="app-container grid md:grid-cols-3 gap-12 py-16 border-t-2 border-foreground/50 dark:border-foreground-dark/50">
 		<div>
-			<a href="/blog-educativo-pucara" class="block w-fit" aria-label="Home">
+			<a href="/" class="block w-fit" aria-label="Home">
 				<LogoSVG height={75} width={65} />
 			</a>
 		</div>
@@ -22,7 +22,7 @@ const today = new Date()
 					WebsiteLinks.filter((link) => link.name !== 'Home').map((link) => (
 						<a
 							class="text-lg"
-							href={`${SITE_BASE}/${link.url}`}
+							href={`${SITE_BASE}${link.url}`}
 						>
 							{link.name}
 						</a>

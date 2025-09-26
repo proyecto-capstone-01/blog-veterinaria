@@ -9,25 +9,32 @@ import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis'
 import { remarkReadingTime } from './src/plugins/remark-reading-time.mjs'
 import { remarkModifiedTime } from './src/plugins/remark-modified-time.mjs'
 
+import cloudflare from '@astrojs/cloudflare';
+
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://pucara.github.io',
-	base: '/blog-educativo-pucara',
-	integrations: [
-		mdx(),
-		sitemap(),
-		icon(),
-		partytown({
-			config: {
-				forward: ['dataLayer.push'],
-			},
-		}),
+  site: 'https://pucara.github.io',
+  base: '/',
+
+  integrations: [
+      mdx(),
+      sitemap(),
+      icon(),
+      partytown({
+          config: {
+              forward: ['dataLayer.push'],
+          },
+      }),
 	],
-	vite: {
-		plugins: [tailwindcss()],
+
+  vite: {
+      plugins: [tailwindcss()],
 	},
-	markdown: {
-		remarkPlugins: [remarkReadingTime, remarkModifiedTime],
-		rehypePlugins: [rehypeFigureTitle, rehypeAccessibleEmojis],
+
+  markdown: {
+      remarkPlugins: [remarkReadingTime, remarkModifiedTime],
+      rehypePlugins: [rehypeFigureTitle, rehypeAccessibleEmojis],
 	},
+
+  adapter: cloudflare(),
 })

@@ -44,7 +44,7 @@ const posts = (await getCollection('blog'))
 		<div class="posts-grid-container">
 			{posts.map((post) => <BlogCard post={post} />)}
 		</div>
-		<a class="btn-secondary" href={`${SITE_BASE}/blog`}
+		<a class="btn-secondary" href={`${SITE_BASE}blog`}
 			>Leer más posts
 			<Icon size={20} name="mdi:arrow-right" />
 		</a>
