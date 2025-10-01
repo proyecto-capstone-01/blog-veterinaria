@@ -13,7 +13,7 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://pucara.github.io',
+  site: 'http://localhost:4321',
   base: '/',
 
   integrations: [
