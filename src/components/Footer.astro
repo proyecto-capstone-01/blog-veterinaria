@@ -1,5 +1,5 @@
 ---
-import { SocialLinks, WebsiteLinks } from '../consts'
+import { SocialLinks } from '../consts'
 import LogoSVG from '../assets/logo.svg'
 import { Icon } from 'astro-icon/components'
 import ThemeSelector from './ThemeSelector.astro'
@@ -14,21 +14,6 @@ const today = new Date()
 			<a href="/" class="block w-fit" aria-label="Home">
 				<LogoSVG height={75} width={65} />
 			</a>
-		</div>
-		<div>
-			<h3 class="font-semibold text-2xl">Links</h3>
-			<div class="flex flex-wrap gap-4 mt-4">
-				{
-					WebsiteLinks.filter((link) => link.name !== 'Home').map((link) => (
-						<a
-							class="text-lg"
-							href={`${SITE_BASE}${link.url}`}
-						>
-							{link.name}
-						</a>
-					))
-				}
-			</div>
 		</div>
 		<div>
 			<h3 class="font-semibold text-2xl">Redes Sociales</h3>

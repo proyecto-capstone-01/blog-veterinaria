@@ -16,10 +16,3 @@ export const SocialLinks = [
 		url: 'https://github.com/proyecto-capstone-01',
 	},
 ]
-
-export const WebsiteLinks = [
-	{
-		name: 'Sobre Nosotros',
-		url: 'about',
-	},
-]
