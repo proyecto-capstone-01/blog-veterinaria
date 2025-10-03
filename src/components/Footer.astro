@@ -1,8 +1,9 @@
 ---
-import { SocialLinks, WebsiteLinks } from '../consts'
+import { SocialLinks } from '../consts'
 import LogoSVG from '../assets/logo.svg'
 import { Icon } from 'astro-icon/components'
 import ThemeSelector from './ThemeSelector.astro'
+import { SITE_BASE } from '@/consts'
 
 const today = new Date()
 ---
@@ -15,23 +16,6 @@ const today = new Date()
 			</a>
 		</div>
 		<div>
-			<h3 class="font-semibold text-2xl">Links</h3>
-			<div class="flex flex-wrap gap-4 mt-4">
-				{
-					WebsiteLinks.filter((link) => link.name !== 'Home').map((link) => (
-						<a
-							class="text-lg"
-							href={link.url}
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							{link.name}
-						</a>
-					))
-				}
-			</div>
-		</div>
-		<div>
 			<h3 class="font-semibold text-2xl">Redes Sociales</h3>
 			<div class="flex flex-wrap gap-4 mt-4">
 				{
@@ -39,8 +23,6 @@ const today = new Date()
 						<a
 							class="text-lg"
 							href={link.url}
-							target="_blank"
-							rel="noopener noreferrer"
 						>
 							{link.name}
 						</a>

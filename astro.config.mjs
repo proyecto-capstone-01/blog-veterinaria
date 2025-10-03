@@ -4,15 +4,16 @@ import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import partytown from '@astrojs/partytown'
 import icon from 'astro-icon'
-import rehypeFigureTitle from 'rehype-figure-title'
-import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis'
 import { remarkReadingTime } from './src/plugins/remark-reading-time.mjs'
 import { remarkModifiedTime } from './src/plugins/remark-modified-time.mjs'
 
+import cloudflare from '@astrojs/cloudflare'
+
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://pucara.github.io',
-	base: '/blog-educativo-pucara',
+	site: 'http://localhost:4321',
+	base: '/',
+
 	integrations: [
 		mdx(),
 		sitemap(),
@@ -23,11 +24,13 @@ export default defineConfig({
 			},
 		}),
 	],
+
 	vite: {
 		plugins: [tailwindcss()],
 	},
+
 	markdown: {
 		remarkPlugins: [remarkReadingTime, remarkModifiedTime],
-		rehypePlugins: [rehypeFigureTitle, rehypeAccessibleEmojis],
 	},
+	adapter: cloudflare(),
 })

@@ -5,6 +5,8 @@ dist/
 
 # dependencies
 node_modules/
+pnpm-lock.yaml
+package-lock.json
 
 # logs
 npm-debug.log*
@@ -19,6 +21,7 @@ pnpm-debug.log*
 .github/
 .idea/
 .vscode/
+.wrangler/
 
 # macOS-specific files
 .DS_Store
